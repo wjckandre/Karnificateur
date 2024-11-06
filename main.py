@@ -15,24 +15,40 @@ def table_verite():
         table.append([input("entrées : "), input("sorties : ")])
     return table
 
-print(table_verite())
-
 def gray(b):
     b=int(b,2)
     b^=(b>>1)
-    return bin(b)[2:]
+    return b
 
-def affTV(table):
+def format(table):
     maxL = max([len(x) for x in table[0]+table[1]])
-    printable = ""
     for i in range(len(table[0])):
         table[0][i] = table[0][i].ljust(maxL)
     for i in range(len(table[1])):
         table[1][i] = table[1][i].ljust(maxL)
+    return table,maxL
+
+def affTV(table):
+    table,maxL = format(table)
+    printable = ""
     printable += "|"+"|".join(table[0]+table[1])+"|\n"
     for ligne in table[2:]:
         printable+= "|"+"|".join([v.ljust(maxL) for v in ligne[0]+ligne[1]])+"|\n"
     print(printable)
 
-def affK():
-    pass
+def affK(table):
+    table,maxL = format(table)
+    table[0] = table[0][::-1]
+    printable = ""
+    printable += "|"+"".join(table[0][:len(table[0])//2])+"|"+"".join(table[0][len(table[0])//2+len(table[0])%2:])
+    print(printable)
+
+
+table = [
+    ["a0","a1","b0","b1"],
+    ["s","x"],
+    ["000","00"],
+    ["001","00"],
+    ["010","00"]
+]
+affK(table)
