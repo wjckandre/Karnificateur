@@ -9,29 +9,3 @@ def affK(table):
     for ligne in table[2:]:
         printable+= "|"+"|".join([v.ljust(maxL) for v in ligne[0]+ligne[1]])+"|\n"
     print(printable)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-table = [
-    ["a0","a1","b"], # nom entrees
-    ["x","s"], # nom sorties
-    ["000","01"], # ligne 1
-    ["001","11"]  # ligne 2
-]
-
-affK(table)
