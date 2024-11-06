@@ -38,17 +38,32 @@ def affTV(table):
 
 def affK(table):
     table,maxL = format(table)
-    table[0] = table[0][::-1]
     printable = ""
-    printable += "|"+"".join(table[0][:len(table[0])//2])+"|"+"".join(table[0][len(table[0])//2+len(table[0])%2:])
+    mid = len(table[0])//2+len(table[0])%2
+    printable += "|"+"".join(table[0][:mid])+"|"+"".join(table[0][mid:]) + " " + " ".join([bin(gray(bin(i)[2:]))[2:].zfill(2) for i in range(pow(2,len(table[0][mid:])))]) + "|\n"
+    for ligne in table[2:]:
+        printable += "|" + "".join(ligne[0][:mid]).ljust(maxL*len(ligne[0][:mid])) + "|" + "".ljust(maxL*len(ligne[0][mid:])+1) +"".join(ligne[0][mid:]).ljust(maxL*len(ligne[0][mid:])) + "|"+ "\n"
     print(printable)
 
 
 table = [
-    ["a0","a1","b0","b1"],
+    ["a1","a0","b1","b0"],
     ["s","x"],
-    ["000","00"],
-    ["001","00"],
-    ["010","00"]
+    ["0000","00"],
+    ["0001","00"],
+    ["0010","00"],
+    ["0011","00"],
+    ["0100","00"],
+    ["0101","00"],
+    ["0110","00"],
+    ["0111","00"],
+    ["1000","00"],
+    ["1001","00"],
+    ["1010","00"],
+    ["1011","00"],
+    ["1100","00"],
+    ["1101","00"],
+    ["1110","00"],
+    ["1111","00"]
 ]
 affK(table)
