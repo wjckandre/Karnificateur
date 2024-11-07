@@ -41,7 +41,7 @@ def affK(table):
     printable = ""
     mid = len(table[0])//2+len(table[0])%2
     kValues1 = [bin(gray(bin(i)[2:]))[2:].zfill(len(table[0][:mid])) for i in range(pow(2,len(table[0][:mid])))]
-    kValues2 = [bin(gray(bin(i)[2:]))[2:].zfill(len(table[0][:mid])) for i in range(pow(2,len(table[0][mid:])))]
+    kValues2 = [bin(gray(bin(i)[2:]))[2:].zfill(len(table[0][mid:])) for i in range(pow(2,len(table[0][mid:])))]
     for s in range(len(table[1])):
         printable += f"Sortie {table[1][s]} :\n"
         printable += "|"+"".join(table[0][:mid])+"|"+"".join(table[0][mid:]) + " " + " ".join([bin(gray(bin(i)[2:]))[2:].zfill(len(table[0][:mid])) for i in range(pow(2,len(table[0][mid:])))]) + "|\n"
