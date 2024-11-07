@@ -40,18 +40,20 @@ def affK(table):
     table,maxL = format(table)
     printable = ""
     mid = len(table[0])//2+len(table[0])%2
-    printable += "|"+"".join(table[0][:mid])+"|"+"".join(table[0][mid:]) + " " + " ".join([bin(gray(bin(i)[2:]))[2:].zfill(2) for i in range(pow(2,len(table[0][mid:])))]) + "|\n"
-    for ligne in table[2:]:
-        printable += "|" + "".join(ligne[0][:mid]).ljust(maxL*len(ligne[0][:mid])) + "|" + "".ljust(maxL*len(ligne[0][mid:])+1) +"".join(ligne[0][mid:]).ljust(maxL*len(ligne[0][mid:])) + "|"+ "\n"
+    printable += "|"+"".join(table[0][:mid])+"|"+"".join(table[0][mid:]) + " " + " ".join([bin(gray(bin(i)[2:]))[2:].zfill(len(table[0][:mid])) for i in range(pow(2,len(table[0][mid:])))]) + "|\n"
+    kValues1 = [bin(gray(bin(i)[2:]))[2:].zfill(len(table[0][:mid])) for i in range(pow(2,len(table[0][:mid])))]
+    kValues2 = [bin(gray(bin(i)[2:]))[2:].zfill(len(table[0][:mid])) for i in range(pow(2,len(table[0][mid:])))]
+    for kv in kValues1:
+        printable += "|" + "".join([v.ljust(maxL) for v in list(kv)]) + "|" + " "*(maxL*len(table[0][mid:])+1) + (" "*maxL).join([table[int(kv+x,2)+2][1][0] for x in kValues2]) + " |\n"
     print(printable)
 
 
 table = [
     ["a1","a0","b1","b0"],
     ["s","x"],
-    ["0000","00"],
-    ["0001","00"],
-    ["0010","00"],
+    ["0000","10"],
+    ["0001","01"],
+    ["0010","11"],
     ["0011","00"],
     ["0100","00"],
     ["0101","00"],
